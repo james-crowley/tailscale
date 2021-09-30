@@ -1,0 +1,8 @@
+description: >
+  Disconnect from Tailscale Network
+
+steps:
+  - run:
+      name: Stop Tailscale Connection
+      command: |
+        sudo tailscale down

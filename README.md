@@ -1,41 +1,34 @@
-# Orb Project Template
+# Tailscale Orb for CircleCI
+<!---
+[![CircleCI Build Status](https://circleci.com/gh/james-crowley/tailscale.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/james-crowley/tailscale) [![CircleCI Orb Version](https://badges.circleci.com/orbs/james-crowley/tailscale.svg)](https://circleci.com/orbs/registry/orb/james-crowley/tailscale) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/james-crowley/tailscale/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
-[![CircleCI Build Status](https://circleci.com/gh/james-crowley/tailscale.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/james-crowley/tailscale) [![CircleCI Orb Version](https://badges.circleci.com/orbs/crowley-namespace/tailscale.svg)](https://circleci.com/orbs/registry/orb/crowley-namespace/tailscale) [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/james-crowley/tailscale/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+--->
+
+This orb allows a user to install and connect to a Tailscale network. 
+
+## Parameters
+
+| Parameters               | Meaning                                                 | Defaults |
+|--------------------------|---------------------------------------------------------|----------|
+| tailscale-auth-key       | Auth Key from Tailscale used to connect to a Network    | N/A      |
+| tailscale-optional-flags | Any additional flags wanted while issuing tailscale up  | N/A      |
 
 
-
-A starter template for orb projects. Build, test, and publish orbs automatically on CircleCI with [Orb-Tools](https://circleci.com/orbs/registry/orb/circleci/orb-tools).
-
-Additional READMEs are available in each directory.
-
+Please note it is recommended to utilize *ephemeral* keys while utilizing this orb. Ephemeral keys are made for CI/CD systems that spin up and down
+on a regular basis. Thus the keys will automatically be cleaned up after a short period of inactivity. For more information on ephemeral keys please
+refer to Tailscale's docs located [here](https://tailscale.com/kb/1111/ephemeral-nodes/).
 
 
-## Resources
+## How to Utilize this Orb
 
-[CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/crowley-namespace/tailscale) - The official registry page of this orb for all versions, executors, commands, and jobs described.
-[CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using and creating CircleCI Orbs.
+Here are some rough steps to get started with this orb:
 
-### How to Contribute
+- Generate an ephemeral key on Tailscale's UI
+- Add the ephemeral key to CircleCI's Environment Variable section under Project Settings. Variable name should be called `TAILSCALE_AUTHKEY`
+- Add the orb to your `config.yml`
+- Call the install command, followed by the start command to connect to your Tailscale network
+
+
+## How to Contribute
 
 We welcome [issues](https://github.com/james-crowley/tailscale/issues) to and [pull requests](https://github.com/james-crowley/tailscale/pulls) against this repository!
-
-### How to Publish
-* Create and push a branch with your new features.
-* When ready to publish a new production version, create a Pull Request from _feature branch_ to `master`.
-* The title of the pull request must contain a special semver tag: `[semver:<segment>]` where `<segment>` is replaced by one of the following values.
-
-| Increment | Description|
-| ----------| -----------|
-| major     | Issue a 1.0.0 incremented release|
-| minor     | Issue a x.1.0 incremented release|
-| patch     | Issue a x.x.1 incremented release|
-| skip      | Do not issue a release|
-
-Example: `[semver:major]`
-
-* Squash and merge. Ensure the semver tag is preserved and entered as a part of the commit message.
-* On merge, after manual approval, the orb will automatically be published to the Orb Registry.
-
-
-For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs).
-
