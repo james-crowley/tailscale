@@ -1,0 +1,8 @@
+description: >
+  Install Tailscale
+
+steps:
+  - run:
+      name: Download and Install Tailscale
+      command: |
+        curl -fsSL https://tailscale.com/install.sh | sh

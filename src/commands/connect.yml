@@ -1,0 +1,19 @@
+description: >
+  Connect to Tailscale network using Auth Key
+
+parameters:
+  tailscale-auth-key:
+    description: Auth Key from Tailscale
+    type: env_var_name
+    default: TAILSCALE_AUTHKEY
+
+  tailscale-optional-flags:
+    description: Additional Optional Flags for Tailscale
+    type: string
+    default: ""
+
+steps:
+  - run:
+      name: Connect to Tailscale using Auth Key
+      command: |
+        sudo tailscale up --authkey ${<< parameters.tailscale-auth-key >>} << parameters.tailscale-optional-flags >>
